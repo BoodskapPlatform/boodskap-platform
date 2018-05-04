@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="boodskap">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="boodskap-dao-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-dao/boodskap-dao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="boodskap-api-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-api/boodskap-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="boodskap-server-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-server/boodskap-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="boodskap-api-client-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-api-client/boodskap-api-client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="boodskap-system-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-system/boodskap-system">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="boodskap-payment-gw-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-payment-gw/boodskap-payment-gw">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="boodskap-server-ml-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-server-ml/boodskap-server-ml">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="boodskap-ext-1.0.6.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-ext/boodskap-ext">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="boodskap"/>
+        <property name="java-output-path" value="/platform/target/classes"/>
+    </wb-module>
+</project-modules>
