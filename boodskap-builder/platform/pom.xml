@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>io.boodskap.iot</groupId>
 		<artifactId>boodskap-builder</artifactId>
-		<version>1.0.1</version>
+		<version>2.0.0</version>
 	</parent>
 	
 	<artifactId>platform</artifactId>
@@ -43,42 +43,42 @@
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-commons</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-dao</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-server</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-system</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-payment-gw</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-server-ml</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.boodskap.iot</groupId>
-			<version>${boodskap.version}</version>
+			<version>${project.version}</version>
 			<artifactId>boodskap-ext</artifactId>
 		</dependency>
 	</dependencies>
