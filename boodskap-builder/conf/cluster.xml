@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
-	license agreements. See the NOTICE file distributed with this work for additional 
-	information regarding copyright ownership. The ASF licenses this file to 
-	You under the Apache License, Version 2.0 (the "License"); you may not use 
-	this file except in compliance with the License. You may obtain a copy of 
-	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
-	by applicable law or agreed to in writing, software distributed under the 
-	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
-	OF ANY KIND, either express or implied. See the License for the specific 
-	language governing permissions and limitations under the License. -->
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -34,34 +23,133 @@
 				<property name="defaultDataRegionConfiguration">
 					<bean
 						class="org.apache.ignite.configuration.DataRegionConfiguration">
-						<property name="persistenceEnabled" value="true" />
+						<property name="persistenceEnabled" value="false" />
 					</bean>
+
 				</property>
+
+				<property name="storagePath"
+					value="/home/boodskap/data/ignite/storage" />
+				<property name="walPath"
+					value="/home/boodskap/data/ignite/wal" />
+				<property name="walArchivePath"
+					value="/home/boodskap/data/ignite/wal/archive" />
 			</bean>
 		</property>
+
 
 		<property name="cacheConfiguration">
 			<list>
 				<bean
 					class="org.apache.ignite.configuration.CacheConfiguration">
-					<property name="name" value="myCache" />
-					<property name="backups" value="1" />
+					<property name="name" value="AUTH_CACHE" />
+					<property name="backups" value="2" />
 					<property name="cacheMode" value="PARTITIONED" />
-					<property name="statisticsEnabled" value="true" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="DEVICE_UPDATE_CACHE" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="DOMAIN_CACHE" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="MSG_SPEC_CACHE" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="GROOVY_SCRIPT_CACHE" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="SYSTEM_EVENTS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="DOMAIN_EVENTS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="OUTGOING_EMAILS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="OUTGOING_SMS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="OUTGOING_VOICES" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="OUTGOING_FCMS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="RULES_MESSAGES" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="SCRIPT_MESSAGES" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="ROUTED_COMMANDS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="LOGS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="INCOMING_MESSAGES" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
 				</bean>
 			</list>
 		</property>
+
 		<property name="discoverySpi">
 			<bean
 				class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
 				<property name="ipFinder">
 					<bean
-						class="org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder">
+						class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
 						<property name="addresses">
 							<list>
-								<!-- <value>192.168.1.7</value> -->
-								<!-- <value>192.168.1.8</value> -->
-								<!-- <value>192.168.1.9</value> -->
+								<value>192.168.1.7</value>
+								<value>192.168.1.8</value>
+								<value>192.168.1.9</value>
 							</list>
 						</property>
 					</bean>
@@ -69,4 +157,5 @@
 			</bean>
 		</property>
 	</bean>
+
 </beans>
