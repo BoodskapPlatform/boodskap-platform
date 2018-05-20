@@ -6,14 +6,14 @@
 
 	<groupId>io.boodskap.iot</groupId>
 	<artifactId>boodskap-builder</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>pom</packaging>
 
 	<name>boodskap-builder</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<boodskap.version>1.0.6</boodskap.version>
+		<boodskap.version>2.0.0</boodskap.version>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>

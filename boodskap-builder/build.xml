@@ -1,6 +1,6 @@
 <project name="builder" default="make">
 
-	<property name="boodskap.version">1.0.6</property>
+	<property name="boodskap.version">2.0.0</property>
 
 	<target name="make" depends="clean, copy, clean-windows, clean-macosx, clean-linux, build" />
 
@@ -15,12 +15,12 @@
 
 		<tar destfile="${basedir}/releases/${boodskap.version}/boodskap-macosx-x86_64.tar" basedir="${basedir}/releases/${boodskap.version}/macosx" />
 		<gzip destfile="${basedir}/releases/boodskap-${boodskap.version}-macosx-x86_64.tar.gz" src="${basedir}/releases/${boodskap.version}/boodskap-macosx-x86_64.tar" />
-		
+
 		<tar destfile="${basedir}/releases/${boodskap.version}/boodskap-linux-x86_64.tar" basedir="${basedir}/releases/${boodskap.version}/linux" />
 		<gzip destfile="${basedir}/releases/boodskap-${boodskap.version}-linux-x86_64.tar.gz" src="${basedir}/releases/${boodskap.version}/boodskap-linux-x86_64.tar" />
 
 		<delete dir="${basedir}/releases/${boodskap.version}" />
-		
+
 	</target>
 
 	<target name="copy">
@@ -35,6 +35,24 @@
 
 		<copy todir="${basedir}/releases/${boodskap.version}/linux/lib">
 			<fileset dir="${basedir}/platform/target/boodskap" />
+		</copy>
+
+		<copy todir="${basedir}/releases/${boodskap.version}/windows/lib">
+			<fileset dir="${basedir}/dist/target">
+				<include name="boodskap-all.jar"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${basedir}/releases/${boodskap.version}/macosx/lib">
+			<fileset dir="${basedir}/dist/target">
+				<include name="boodskap-all.jar"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${basedir}/releases/${boodskap.version}/linux/lib">
+			<fileset dir="${basedir}/dist/target">
+				<include name="boodskap-all.jar"/>
+			</fileset>
 		</copy>
 
 		<copy todir="${basedir}/releases/${boodskap.version}/windows/conf">

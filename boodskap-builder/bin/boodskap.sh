@@ -27,7 +27,7 @@ case $1 in
             nohup java $JVM_ARGS -Dlog4j.configuration=$LOG4J_CONF -jar $MAIN_JAR > $OUT_FILE 2>&1 &
             echo $! > $PID_PATH_NAME
             echo "$SERVICE_NAME started ..."
-        tail -f $OUT_FILE
+            timeout 30 tail -f $OUT_FILE
         else
             echo "$SERVICE_NAME is already running ..."
         fi
@@ -37,11 +37,9 @@ case $1 in
             PID=$(cat $PID_PATH_NAME);
             echo "$SERVICE_NAME stoping ..."
             kill $PID
-            sleep 10
-            kill -9 $PID
-            echo "$SERVICE_NAME stopped ..."
+            timeout 8 tail -f $OUT_FILE
+            (kill -9 $PID 2>&1) >/dev/null
             rm -f $PID_PATH_NAME
-        tail -f $OUT_FILE
         else
             echo "$SERVICE_NAME is not running ..."
         fi
