@@ -13,8 +13,6 @@ import org.eclipse.jetty.webapp.WebAppContext;
  */
 public class ServerBootstrap {
 	
-	//private static final Logger LOG = LoggerFactory.getLogger(ServerBootstrap.class);
-	
 	private static final File TARGET_WAR_FILE = new File("target", "boodskap.war");
 	private static final File BASE_PATH = new File(System.getProperty("user.home"));
 	private static final File WAR_FOLDER = new File(BASE_PATH, "lib");
@@ -22,8 +20,6 @@ public class ServerBootstrap {
 
 	public static void main(String[] args) throws Exception {
 		
-		//LOG.warn("Starting Boodskap IoT Platform services");
-
 		final org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(18080);
 		
 		WebAppContext webapp = new WebAppContext();
@@ -38,8 +34,6 @@ public class ServerBootstrap {
 		}else if(WAR_FILE.exists()) {
 			webapp.setWar(WAR_FILE.getAbsolutePath());
 		}
-		
-		//LOG.info("APPLICATION: {}", webapp.getWar());
 		
 		server.setHandler(webapp);
 		
