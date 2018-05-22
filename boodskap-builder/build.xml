@@ -6,6 +6,9 @@
 
 	<target name="clean">
 		<delete dir="${basedir}/releases/${boodskap.version}" />
+		<delete file="${basedir}/releases/boodskap-${boodskap.version}-win-x86_64.tar.gz" />
+		<delete file="${basedir}/releases/boodskap-${boodskap.version}-macosx-x86_64.tar.gz" />
+		<delete file="${basedir}/releases/boodskap-${boodskap.version}-linux-x86_64.tar.gz" />
 	</target>
 
 	<target name="build">
