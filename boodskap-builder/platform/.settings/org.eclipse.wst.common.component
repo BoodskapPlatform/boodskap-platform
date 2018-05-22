@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-            
+                
+    
     
     <wb-module deploy-name="boodskap">
-                        
+                                
+        
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                        
+                                
+        
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                        
+                                
+        
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <dependent-module archiveName="boodskap-commons-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-commons/boodskap-commons">
@@ -38,15 +42,19 @@
         <dependent-module archiveName="boodskap-ext-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/boodskap-ext/boodskap-ext">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-                        
+                                
+        
         
         <property name="context-root" value="boodskap"/>
-                        
+                                
+        
         
         <property name="java-output-path" value="/platform/target/classes"/>
-                    
+                            
+    
     
     </wb-module>
-        
+            
+
 
 </project-modules>
