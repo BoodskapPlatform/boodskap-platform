@@ -51,6 +51,7 @@
 					<property name="name" value="DEVICE_UPDATE_CACHE" />
 					<property name="backups" value="2" />
 					<property name="cacheMode" value="PARTITIONED" />
+					<property name="atomicityMode" value="TRANSACTIONAL" />
 				</bean>
 				<bean
 					class="org.apache.ignite.configuration.CacheConfiguration">
