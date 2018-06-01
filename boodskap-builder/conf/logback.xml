@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- Errors were reported during translation. -->
+  <!-- Could not find transformer for io.boodskap.iot.MQTTAppender -->
+  <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <File>/home/boodskap/logs/boodskap.log</File>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{1}:%L - %m%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>100</maxIndex>
+      <FileNamePattern>/home/boodskap/logs/boodskap.log.%i</FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>10MB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+  <appender name="mqtt" class="io.boodskap.iot.MQTTAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{1}:%L - %m%n</pattern>
+    </layout>
+  </appender>
+  <logger name="com.datastax.driver.core" level="INFO"/>
+  <logger name="io.boodskap" level="INFO"/>
+  <root level="INFO">
+    <appender-ref ref="file"/>
+    <appender-ref ref="mqtt"/>
+  </root>
+</configuration>
