@@ -257,5 +257,18 @@
 			</patternset>
 		</delete>
 	</target>
+	
+	<target name="make-patch">
+		<delete file="${basedir}/releases/boodskap-${boodskap.version}-patch.tar.gz" />
+		<delete dir="${basedir}/releases/${boodskap.version}" />
+		<copy todir="${basedir}/releases/${boodskap.version}/lib/WEB-INF/lib">
+			<fileset dir="${basedir}/platform/target/boodskap/WEB-INF/lib">
+				<include name="boodskap-*.jar"/>
+			</fileset>
+		</copy>
+		<tar destfile="${basedir}/releases/${boodskap.version}/boodskap-patch.tar" basedir="${basedir}/releases/${boodskap.version}" />
+		<gzip destfile="${basedir}/releases/boodskap-${boodskap.version}-patch.tar.gz" src="${basedir}/releases/${boodskap.version}/boodskap-patch.tar" />
+		<delete dir="${basedir}/releases/${boodskap.version}" />
+	</target>
 
 </project>
