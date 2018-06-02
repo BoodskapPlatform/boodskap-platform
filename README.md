@@ -23,28 +23,15 @@ You need to have 3 public DNS records pointing to the **gateway** machine's publ
 * gw.boodskap.io
 * api.boodskap.io
 
-On **nodes 1-3** machines, create the below users
+On **all** machines, create the below users
 
 * sudo apt-get update
 * sudo apt-get upgrade
 * sudo adduser boodskap
-* sudo adduser elastic
-* sudo adduser cassandra
-* sudo adduser kibana 
-* sudo adduser emqtt
+* sudo apt-get install unzip
+* sudp apt-get install python
 
-On **gateway** machine, create the below user and perform the tasks
-
-* sudo apt-get update
-* sudo apt-get upgrade
-* sudo adduser boodskap
-* sudo su - boodskap
-* mkdir -p $HOME/data/share/platform/bin
-* mkdir -p $HOME/data/share/platform/conf
-* mkdir -p $HOME/data/share/platform/lib
-* sudo apt-get upgrade
-
-On **nodes 1-3**, install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracle 1.8 JDK's can be found here 
+Install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracle 1.8 JDK's can be found here 
 
 [Oracle JDKs](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 You can use wget and download from a console too
@@ -60,6 +47,19 @@ Add the below statements and save
 * JAVA\_HOME=/opt/jdk1.8.0_171
 * BOODSKAP\_HOME=/home/boodskap
 
+On **nodes 1-3** machines, create the below users
+
+* sudo adduser elastic
+* sudo adduser cassandra
+* sudo adduser kibana 
+* sudo adduser emqtt
+
+On **gateway** machine, create the below user and perform the tasks
+
+* sudo su - boodskap
+* mkdir -p $HOME/data/share/platform/bin
+* mkdir -p $HOME/data/share/platform/conf
+* mkdir -p $HOME/data/share/platform/lib
 
 ### NFS Server/Client Setup
 In the **gateway** machine, perform the below operations.
