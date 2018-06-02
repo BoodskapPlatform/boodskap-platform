@@ -16,7 +16,7 @@
       <MaxFileSize>10MB</MaxFileSize>
     </triggeringPolicy>
   </appender>
-  <appender name="mqtt" class="io.boodskap.iot.MQTTAppender">
+  <appender name="mqtt" class="io.boodskap.iot.MQTTLogbackAppender">
     <layout class="ch.qos.logback.classic.PatternLayout">
       <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{1}:%L - %m%n</pattern>
     </layout>
