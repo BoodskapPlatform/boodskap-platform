@@ -16,6 +16,25 @@
 			</map>
 		</property>
 
+
+		<property name="discoverySpi">
+			<bean
+				class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+				<property name="ipFinder">
+					<bean
+						class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+						<property name="addresses">
+							<list>
+								<value>192.168.1.7</value>
+								<value>192.168.1.8</value>
+								<value>192.168.1.9</value>
+							</list>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+
 		<!-- Enabling Apache Ignite Persistent Store. -->
 		<property name="dataStorageConfiguration">
 			<bean
@@ -138,24 +157,6 @@
 					<property name="cacheMode" value="PARTITIONED" />
 				</bean>
 			</list>
-		</property>
-
-		<property name="discoverySpi">
-			<bean
-				class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
-				<property name="ipFinder">
-					<bean
-						class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
-						<property name="addresses">
-							<list>
-								<value>192.168.1.7</value>
-								<value>192.168.1.8</value>
-								<value>192.168.1.9</value>
-							</list>
-						</property>
-					</bean>
-				</property>
-			</bean>
 		</property>
 	</bean>
 
