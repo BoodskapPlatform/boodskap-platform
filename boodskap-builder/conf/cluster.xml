@@ -146,6 +146,12 @@
 				</bean>
 				<bean
 					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="SMS_VOICE_STATUS" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
 					<property name="name" value="LOGS" />
 					<property name="backups" value="2" />
 					<property name="cacheMode" value="PARTITIONED" />
