@@ -170,7 +170,7 @@ Download and configure
 
 Edit the config file and change
 
-* nano config/elastic.yaml
+* nano config/kibana.yaml
 * server.host: "0.0.0.0"
 * elasticsearch.url: http://192.168.1.[7|8|9]:9200"
     * *each node should have it's own IP address*
