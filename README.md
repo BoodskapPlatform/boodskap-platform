@@ -181,8 +181,8 @@ Edit the config file and change
 Download and configure
 
 * sudo su - emqtt
-* wget http://emqtt.io/downloads/latest/ubuntu16_04
-* unzip ubuntu16_04
+* wget --no-check-certificate  https://www.emqx.io/static/brokers/emqttd-ubuntu16.04-v2.3.9.zip
+* unzip emqttd-ubuntu16.04-v2.3.9.zip
 * mv emqttd/* .
 * rm -rf emqttd
 
