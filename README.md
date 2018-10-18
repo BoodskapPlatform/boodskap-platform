@@ -29,7 +29,7 @@ On **all** machines, create the below users
 * sudo apt-get upgrade
 * sudo adduser boodskap
 * sudo apt-get install unzip
-* sudp apt-get install python
+* sudo apt-get install python
 
 Install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracle 1.8 JDK's can be found here 
 
@@ -109,7 +109,7 @@ Download cassandara and configure
 
 Edit configuration and change the below parameters
 
-* nano $HOME/config/cassandra.yaml 
+* nano $HOME/conf/cassandra.yaml 
 * cluster_name: 'BSKP DB CLUSTER'
 * - seeds: "192.168.1.7,192.168.1.8,192.168.1.9"
 * listen_address: 192.168.1.[7|8|9]
