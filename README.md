@@ -33,15 +33,10 @@ sudo apt-get install unzip
 sudo apt-get install python
 ````
 
-Install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracle 8 JDK's can be found here 
+Install JDK 8 On **all** machines
+We prefer Oracle JDK (**not JRE**). At the time of writing Oracle 8 JDK's can be found here 
 
 [Oracle JDKs](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-You can use wget and download from a console too
-
-````console
-wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz"
-sudo tar -xzf jdk-8u171-linux-x64.tar.gz -C /opt  
-````
 
 ###### On Ubutu machines (tested on 18.04)
 ````console
@@ -59,7 +54,6 @@ sudo nano /etc/profile
 Add the below statements and save
 
 ````
-JAVA\_HOME=/opt/jdk1.8.0_171
 BOODSKAP\_HOME=/home/boodskap
 ````
 
