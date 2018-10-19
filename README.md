@@ -28,7 +28,7 @@ On **all** machines, create the below users
 ````console
 sudo apt-get update
 sudo apt-get upgrade
-sudo adduser boodskap
+sudo adduser --disabled-password --gecos ""  boodskap
 sudo apt-get -y install unzip
 sudo apt-get -y install python
 ````
@@ -60,10 +60,10 @@ BOODSKAP_HOME=/home/boodskap
 On **nodes 1-3** machines, create the below users
 
 ````console
-sudo adduser elastic
-sudo adduser cassandra
-sudo adduser kibana 
-sudo adduser emqtt
+sudo adduser --disabled-password --gecos ""  elastic
+sudo adduser --disabled-password --gecos ""  cassandra
+sudo adduser --disabled-password --gecos ""  kibana 
+sudo adduser --disabled-password --gecos ""  emqtt
 ````
 
 On **gateway** machine, create the below user and perform the tasks
