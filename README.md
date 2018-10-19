@@ -25,11 +25,13 @@ You need to have 3 public DNS records pointing to the **gateway** machine's publ
 
 On **all** machines, create the below users
 
-* sudo apt-get update
-* sudo apt-get upgrade
-* sudo adduser boodskap
-* sudo apt-get install unzip
-* sudo apt-get install python
+````console
+sudo apt-get update
+sudo apt-get upgrade
+sudo adduser boodskap
+sudo apt-get install unzip
+sudo apt-get install python
+````
 
 Install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracle 8 JDK's can be found here 
 
@@ -40,7 +42,7 @@ wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://down
 sudo tar -xzf jdk-8u171-linux-x64.tar.gz -C /opt  
 ````
 ###### On Ubutu machines (tested on 18.04)
-````
+````console
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
@@ -48,7 +50,9 @@ sudo apt-get install oracle-java8-installer
 
 Edit /etc/profile
 
-* sudo nano /etc/profile
+````console
+sudo nano /etc/profile
+````
 
 Add the below statements and save
 
@@ -57,26 +61,34 @@ Add the below statements and save
 
 On **nodes 1-3** machines, create the below users
 
-* sudo adduser elastic
-* sudo adduser cassandra
-* sudo adduser kibana 
-* sudo adduser emqtt
+````console
+sudo adduser elastic
+sudo adduser cassandra
+sudo adduser kibana 
+sudo adduser emqtt
+````
 
 On **gateway** machine, create the below user and perform the tasks
 
-* sudo su - boodskap
-* mkdir -p $HOME/data/share/platform/bin
-* mkdir -p $HOME/data/share/platform/conf
-* mkdir -p $HOME/data/share/platform/lib
+````console
+sudo su - boodskap
+mkdir -p $HOME/data/share/platform/bin
+mkdir -p $HOME/data/share/platform/conf
+mkdir -p $HOME/data/share/platform/lib
+````
 
 ### NFS Server/Client Setup
 In the **gateway** machine, perform the below operations.
 
-* sudo apt install nfs-kernel-server
+````console
+sudo apt install nfs-kernel-server
+````
 
 Edit the exports file
 
-* sudo nano /etc/exports 
+````console
+sudo nano /etc/exports 
+````
 
 Insert the below at the end of file and save
 
@@ -84,15 +96,21 @@ Insert the below at the end of file and save
 
 Restart NFS server
 
-* sudo service nfs-server restart
+````console
+sudo service nfs-server restart
+````
 
 On **nodes 1-3** machines, perform the below operations.
 
-* sudo apt install nfs-common
+````console
+sudo apt install nfs-common
+````
 
 Edit the /etc/fstab file
 
-* sudo nano /etc/fstab
+````console
+sudo nano /etc/fstab
+````
 
 All the below content and save
 
@@ -100,8 +118,9 @@ All the below content and save
 
 Mount the drive
 
-* sudo mount -a
-
+````console
+sudo mount -a
+````
 
 ### Cassandra Server Setup
 
@@ -109,11 +128,13 @@ On **nodes 1-3** machines, perform the below operations.
 	
 Download cassandara and configure
 
-* sudo su - cassandra
-* wget https://archive.apache.org/dist/cassandra/3.11.0/apache-cassandra-3.11.0-bin.tar.gz
-* tar -xzf apache-cassandra-3.11.0-bin.tar.gz
-* mv apache-cassandra-3.11.0/* .
-* rm -rf apache-cassandra-3.11.0
+````console
+sudo su - cassandra
+wget https://archive.apache.org/dist/cassandra/3.11.0/apache-cassandra-3.11.0-bin.tar.gz
+tar -xzf apache-cassandra-3.11.0-bin.tar.gz
+mv apache-cassandra-3.11.0/* .
+rm -rf apache-cassandra-3.11.0
+````
 
 Edit configuration and change the below parameters
 
@@ -137,11 +158,13 @@ On **nodes 1-3** machines, perform the below operations.
 
 Download ElasticSearch and configure
 
-* sudo su - elastic
-* wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.tar.gz
-* tar -xzf elasticsearch-5.5.0.tar.gz
-* mv elasticsearch-5.5.0/* .
-* rm -rf elasticsearch-5.5.0
+````console
+sudo su - elastic
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.tar.gz
+tar -xzf elasticsearch-5.5.0.tar.gz
+mv elasticsearch-5.5.0/* .
+rm -rf elasticsearch-5.5.0
+````
 
 Edit configuration and change the below parameters
 
@@ -155,7 +178,9 @@ Edit configuration and change the below parameters
     
 Edit sysctl properties and change the below parameters
 
-* sudo nano /etc/sysctl.conf
+````console
+sudo nano /etc/sysctl.conf
+````
 * vm.max_map_count=262144
 
 ** To further tune the ElasticSearch, please refer to **
@@ -170,15 +195,20 @@ On **nodes 1-3** machines, perform the below operations.
 
 Download and configure
 
-* sudo su - kibana
-* wget https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz
-* tar -xzf kibana-5.5.0-linux-x86_64.tar.gz
-* mv kibana-5.5.0-linux-x86_64/* .
-* rm -rf kibana-5.5.0-linux-x86_64
+````console
+sudo su - kibana
+wget https://artifacts.elastic.co/downloads/kibana/kibana-5.5.0-linux-x86_64.tar.gz
+tar -xzf kibana-5.5.0-linux-x86_64.tar.gz
+mv kibana-5.5.0-linux-x86_64/* .
+rm -rf kibana-5.5.0-linux-x86_64
+````
 
 Edit the config file and change
 
-* nano config/kibana.yaml
+````console
+nano config/kibana.yaml
+````
+
 * server.host: "0.0.0.0"
 * elasticsearch.url: http://192.168.1.[7|8|9]:9200"
     * *each node should have it's own IP address*
@@ -188,15 +218,19 @@ Edit the config file and change
 
 Download and configure
 
-* sudo su - emqtt
-* wget --no-check-certificate  https://www.emqx.io/static/brokers/emqttd-ubuntu16.04-v2.3.9.zip
-* unzip emqttd-ubuntu16.04-v2.3.9.zip
-* mv emqttd/* .
-* rm -rf emqttd
+````console
+sudo su - emqtt
+wget --no-check-certificate  https://www.emqx.io/static/brokers/emqttd-ubuntu16.04-v2.3.9.zip
+unzip emqttd-ubuntu16.04-v2.3.9.zip
+mv emqttd/* .
+rm -rf emqttd
+````
 
 Edit config file and change the below parameters
 
-* nano etc/emq.conf
+````console
+nano etc/emq.conf
+````
 * cluster.name = bskp-emqcl
 * cluster.discovery = static
 * cluster.static.seeds = emq@192.168.1.7,emq@192.168.1.8,emq@192.168.1.9
@@ -225,7 +259,9 @@ Edit config file and change the below parameters
 
 Edit the pluggable auth configuration and change the below parameters
 
-* nano $HOME/etc/plugins/emq_auth_http.conf
+````console
+nano $HOME/etc/plugins/emq_auth_http.conf
+````
 * auth.http.auth_req = http://**api.boodskap.in**/emqtt/auth
 * auth.http.auth_req.method = **get**
 * auth.http.auth_req.params = clientid=%c,username=%u,password=%P
@@ -243,35 +279,36 @@ Edit the pluggable auth configuration and change the below parameters
 
 # /etc/sysctl.conf
 
-````
-$ sysctl -w fs.file-max=2097152
-$ sysctl -w fs.nr_open=2097152
-$ sysctl -w net.core.somaxconn=32768
-$ sysctl -w net.ipv4.tcp_max_syn_backlog=16384
-$ sysctl -w net.core.netdev_max_backlog=16384
-$ sysctl -w net.ipv4.ip_local_port_range="1000 65535"
-$ sysctl -w net.core.rmem_default=262144
-$ sysctl -w net.core.wmem_default=262144
-$ sysctl -w net.core.rmem_max=16777216
-$ sysctl -w net.core.wmem_max=16777216
-$ sysctl -w net.core.optmem_max=16777216
+````console
+sysctl -w fs.file-max=2097152
+sysctl -w fs.nr_open=2097152
+sysctl -w net.core.somaxconn=32768
+sysctl -w net.ipv4.tcp_max_syn_backlog=16384
+sysctl -w net.core.netdev_max_backlog=16384
+sysctl -w net.ipv4.ip_local_port_range="1000 65535"
+sysctl -w net.core.rmem_default=262144
+sysctl -w net.core.wmem_default=262144
+sysctl -w net.core.rmem_max=16777216
+sysctl -w net.core.wmem_max=16777216
+sysctl -w net.core.optmem_max=16777216
 
-$ #sysctl -w net.ipv4.tcp_mem='16777216 16777216 16777216'
-$ sysctl -w net.ipv4.tcp_rmem='1024 4096 16777216'
-$ sysctl -w net.ipv4.tcp_wmem='1024 4096 16777216'
-$ sysctl -w net.nf_conntrack_max=1000000
-$ sysctl -w net.netfilter.nf_conntrack_max=1000000
-$ sysctl -w net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
-$ sysctl -w net.ipv4.tcp_max_tw_buckets=1048576
+#sysctl -w net.ipv4.tcp_mem='16777216 16777216 16777216'
+sysctl -w net.ipv4.tcp_rmem='1024 4096 16777216'
+sysctl -w net.ipv4.tcp_wmem='1024 4096 16777216'
+sysctl -w net.nf_conntrack_max=1000000
+sysctl -w net.netfilter.nf_conntrack_max=1000000
+sysctl -w net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+sysctl -w net.ipv4.tcp_max_tw_buckets=1048576
 
 #Enable fast recycling of TIME_WAIT sockets.  Enabling this
 #option is not recommended for devices communicating with the
 #general Internet or using NAT (Network Address Translation).
 #Since some NAT gateways pass through IP timestamp values, one
 #IP can appear to have non-increasing timestamps.
-$ #sysctl -w net.ipv4.tcp_tw_recycle = 1
-$ #sysctl -w net.ipv4.tcp_tw_reuse = 1
-$ sysctl -w net.ipv4.tcp_fin_timeout = 15
+#sysctl -w net.ipv4.tcp_tw_recycle = 1
+#sysctl -w net.ipv4.tcp_tw_reuse = 1
+
+sysctl -w net.ipv4.tcp_fin_timeout = 15
 ````
 
 # /etc/security/limits.conf
@@ -294,9 +331,11 @@ node.max_ports = 1048576
 
 In the **gateway** machine, perform the below operations.
 
-* sudo apt-get install nginx
-* cd /etc/nginx/sites-enabled
-* rm default
+````console
+sudo apt-get install nginx
+cd /etc/nginx/sites-enabled
+rm default
+````
 
 Copy paste the below configuration under 
 
@@ -530,7 +569,9 @@ server {
 
 In the **gateway** machine, perform the below operations.
 
-* sudo apt-get install haproxy
+````console
+sudo apt-get install haproxy
+````
 
 Edit /etc/haproxy/haproxy.cfg and make sure the following settings are changed/created
 
