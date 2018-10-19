@@ -289,35 +289,38 @@ auth.http.acl_req.params = access=%A,username=%u,clientid=%c,ipaddr=%a,topic=%t
 ###### /etc/sysctl.conf
 
 ````console
-sysctl -w fs.file-max=2097152
-sysctl -w fs.nr_open=2097152
-sysctl -w net.core.somaxconn=32768
-sysctl -w net.ipv4.tcp_max_syn_backlog=16384
-sysctl -w net.core.netdev_max_backlog=16384
-sysctl -w net.ipv4.ip_local_port_range="1000 65535"
-sysctl -w net.core.rmem_default=262144
-sysctl -w net.core.wmem_default=262144
-sysctl -w net.core.rmem_max=16777216
-sysctl -w net.core.wmem_max=16777216
-sysctl -w net.core.optmem_max=16777216
+fs.file-max=2097152
+fs.nr_open=2097152
+net.core.somaxconn=32768
+net.ipv4.tcp_max_syn_backlog=16384
+net.core.netdev_max_backlog=16384
+net.ipv4.ip_local_port_range="1000 65535"
+net.core.rmem_default=262144
+net.core.wmem_default=262144
+net.core.rmem_max=16777216
+net.core.wmem_max=16777216
+net.core.optmem_max=16777216
 
-#sysctl -w net.ipv4.tcp_mem='16777216 16777216 16777216'
-sysctl -w net.ipv4.tcp_rmem='1024 4096 16777216'
-sysctl -w net.ipv4.tcp_wmem='1024 4096 16777216'
-sysctl -w net.nf_conntrack_max=1000000
-sysctl -w net.netfilter.nf_conntrack_max=1000000
-sysctl -w net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
-sysctl -w net.ipv4.tcp_max_tw_buckets=1048576
+# net.ipv4.tcp_mem='16777216 16777216 16777216'
+net.ipv4.tcp_rmem='1024 4096 16777216'
+net.ipv4.tcp_wmem='1024 4096 16777216'
+net.nf_conntrack_max=1000000
+net.netfilter.nf_conntrack_max=1000000
+net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+net.ipv4.tcp_max_tw_buckets=1048576
 
-#Enable fast recycling of TIME_WAIT sockets.  Enabling this
-#option is not recommended for devices communicating with the
-#general Internet or using NAT (Network Address Translation).
-#Since some NAT gateways pass through IP timestamp values, one
-#IP can appear to have non-increasing timestamps.
-#sysctl -w net.ipv4.tcp_tw_recycle = 1
-#sysctl -w net.ipv4.tcp_tw_reuse = 1
+# Enable fast recycling of TIME_WAIT sockets.  Enabling this
+# option is not recommended for devices communicating with the
+# general Internet or using NAT (Network Address Translation).
+# Since some NAT gateways pass through IP timestamp values, one
+# IP can appear to have non-increasing timestamps.
+# net.ipv4.tcp_tw_recycle = 1
+# net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_fin_timeout = 15
+````
 
-sysctl -w net.ipv4.tcp_fin_timeout = 15
+###### load module ip_conntrack````console
+echo "ip_conntrack" | sudo tee -a /etc/modules
 ````
 
 ###### /etc/security/limits.conf
