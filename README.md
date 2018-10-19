@@ -319,7 +319,9 @@ net.ipv4.tcp_max_tw_buckets=1048576
 net.ipv4.tcp_fin_timeout = 15
 ````
 
-###### load module ip_conntrack````console
+###### load module ip_conntrack
+
+````console
 echo "ip_conntrack" | sudo tee -a /etc/modules
 ````
 
