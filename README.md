@@ -1,6 +1,6 @@
 # Boodskap IoT Platform
 
-This documentation covers setting up the platform in Ubuntu server 64Bit, 16.04 LTS Edition.
+This documentation covers setting up the platform in Ubuntu server 64Bit, 16.04 and 18.04 LTS Editions.
 To run a clustered platform, you need 4 machines with the following configuration. 
 
 * 3 Machines with 8GB RAM, 8GB SWAP, 32GB HDD (SSD preferred)
@@ -29,8 +29,8 @@ On **all** machines, create the below users
 sudo apt-get update
 sudo apt-get upgrade
 sudo adduser boodskap
-sudo apt-get install unzip
-sudo apt-get install python
+sudo apt-get -y install unzip
+sudo apt-get -y install python
 ````
 
 Install JDK 8 On **all** machines
@@ -42,7 +42,7 @@ We prefer Oracle JDK (**not JRE**). At the time of writing Oracle 8 JDK's can be
 ````console
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install oracle-java8-installer
+sudo apt-get -y install oracle-java8-installer
 ````
 
 Edit /etc/profile
@@ -79,7 +79,7 @@ mkdir -p $HOME/data/share/platform/lib
 In the **gateway** machine, perform the below operations.
 
 ````console
-sudo apt install nfs-kernel-server
+sudo apt-get -y install nfs-kernel-server
 ````
 
 Edit the exports file
@@ -103,7 +103,7 @@ sudo service nfs-server restart
 On **nodes 1-3** machines, perform the below operations.
 
 ````console
-sudo apt install nfs-common
+sudo apt-get -y install nfs-common
 ````
 
 Edit the /etc/fstab file
