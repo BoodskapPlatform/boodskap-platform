@@ -270,16 +270,16 @@ nano $HOME/etc/plugins/emq_auth_http.conf
 ````
 
 ````
-auth.http.auth_req = http://api.boodskap.io/emqtt/auth
+auth.http.auth_req = https://api.boodskap.io/emqtt/get/auth
 auth.http.auth_req.method = get
 auth.http.auth_req.params = clientid=%c,username=%u,password=%P,ipaddr=a%
 
-auth.http.super_req = http://api.boodskap.io/emqtt/superuser
+auth.http.super_req = https://api.boodskap.io/emqtt/get/superuser
 auth.http.super_req.method = get
 auth.http.super_req.params = clientid=%c,username=%u,ipaddr=%a
 
-auth.http.acl_req = http://**api.boodskap.in**/emqtt/acl
-auth.http.acl_req.method = **get**
+auth.http.acl_req = https://api.boodskap.io/emqtt/acl
+auth.http.acl_req.method = get
 auth.http.acl_req.params = access=%A,username=%u,clientid=%c,ipaddr=%a,topic=%t
 ````
 
