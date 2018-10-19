@@ -233,11 +233,54 @@ Edit the pluggable auth configuration and change the below parameters
 ** To run a very high scalable MQTT, please refer to **
 [EMQTT Tuning](http://emqtt.io/docs/v2/tune.html)
 
-* fs.file-max = 10000000
-* fs.nr_open = 10000000
-* net.ipv4.tcp_mem = 786432 1697152 1945728
-* net.ipv4.tcp_rmem = 4096 4096 16777216
-* net.ipv4.tcp_wmem = 4096 4096 16777216
+# /etc/sysctl.conf
+
+````
+$ sysctl -w fs.file-max=2097152
+$ sysctl -w fs.nr_open=2097152
+$ sysctl -w net.core.somaxconn=32768
+$ sysctl -w net.ipv4.tcp_max_syn_backlog=16384
+$ sysctl -w net.core.netdev_max_backlog=16384
+$ sysctl -w net.ipv4.ip_local_port_range="1000 65535"
+$ sysctl -w net.core.rmem_default=262144
+$ sysctl -w net.core.wmem_default=262144
+$ sysctl -w net.core.rmem_max=16777216
+$ sysctl -w net.core.wmem_max=16777216
+$ sysctl -w net.core.optmem_max=16777216
+
+$ #sysctl -w net.ipv4.tcp_mem='16777216 16777216 16777216'
+$ sysctl -w net.ipv4.tcp_rmem='1024 4096 16777216'
+$ sysctl -w net.ipv4.tcp_wmem='1024 4096 16777216'
+$ sysctl -w net.nf_conntrack_max=1000000
+$ sysctl -w net.netfilter.nf_conntrack_max=1000000
+$ sysctl -w net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+$ sysctl -w net.ipv4.tcp_max_tw_buckets=1048576
+
+#Enable fast recycling of TIME_WAIT sockets.  Enabling this
+#option is not recommended for devices communicating with the
+#general Internet or using NAT (Network Address Translation).
+#Since some NAT gateways pass through IP timestamp values, one
+#IP can appear to have non-increasing timestamps.
+$ #sysctl -w net.ipv4.tcp_tw_recycle = 1
+$ #sysctl -w net.ipv4.tcp_tw_reuse = 1
+$ sysctl -w net.ipv4.tcp_fin_timeout = 15
+````
+
+# /etc/security/limits.conf
+````
+*      soft   nofile      1048576
+*      hard   nofile      1048576
+````
+
+# $(EMQTT_HOME)/etc/emq.conf
+````
+node.process_limit = 2097152
+node.max_ports = 1048576
+listener.tcp.external = 0.0.0.0:1883
+listener.tcp.external.acceptors = 64
+listener.tcp.external.max_clients = 100000
+node.max_ports = 1048576
+````
 
 ### Nginx Server Setup
 
