@@ -234,7 +234,7 @@ rm -rf emqttd
 Edit config file and change the below parameters
 
 ````console
-nano etc/emq.conf
+nano $HOME/etc/emq.conf
 ````
 
 ````
@@ -329,16 +329,6 @@ echo "ip_conntrack" | sudo tee -a /etc/modules
 ````
 *      soft   nofile      1048576
 *      hard   nofile      1048576
-````
-
-###### $(EMQTT_HOME)/etc/emq.conf
-````
-node.process_limit = 2097152
-node.max_ports = 1048576
-listener.tcp.external = 0.0.0.0:1883
-listener.tcp.external.acceptors = 64
-listener.tcp.external.max_clients = 100000
-node.max_ports = 1048576
 ````
 
 ### Nginx Server Setup
