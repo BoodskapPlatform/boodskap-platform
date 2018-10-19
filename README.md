@@ -37,10 +37,12 @@ Install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracl
 
 [Oracle JDKs](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 You can use wget and download from a console too
-````
+
+````console
 wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz"
 sudo tar -xzf jdk-8u171-linux-x64.tar.gz -C /opt  
 ````
+
 ###### On Ubutu machines (tested on 18.04)
 ````console
 sudo add-apt-repository ppa:webupd8team/java
@@ -277,7 +279,7 @@ nano $HOME/etc/plugins/emq_auth_http.conf
 ** To run a very high scalable MQTT, please refer to **
 [EMQTT Tuning](http://emqtt.io/docs/v2/tune.html)
 
-# /etc/sysctl.conf
+###### /etc/sysctl.conf
 
 ````console
 sysctl -w fs.file-max=2097152
@@ -311,13 +313,13 @@ sysctl -w net.ipv4.tcp_max_tw_buckets=1048576
 sysctl -w net.ipv4.tcp_fin_timeout = 15
 ````
 
-# /etc/security/limits.conf
+###### /etc/security/limits.conf
 ````
 *      soft   nofile      1048576
 *      hard   nofile      1048576
 ````
 
-# $(EMQTT_HOME)/etc/emq.conf
+###### $(EMQTT_HOME)/etc/emq.conf
 ````
 node.process_limit = 2097152
 node.max_ports = 1048576
