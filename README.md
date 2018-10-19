@@ -152,6 +152,11 @@ auto_bootstrap: false
 
 Save the file
 
+###### Start Cassandra
+````console
+$HOME/bin/cassandra
+````
+
 ### ElasticSearch Server Setup
 
 On **nodes 1-3** machines, perform the below operations.
@@ -193,6 +198,10 @@ vm.max_map_count=262144
     
 Save the file
 
+###### Start Elastic Search
+````console
+$HOME/bin/elasticsearch &
+````
 
 ### Kibana Server Setup (optional)
 
@@ -217,6 +226,12 @@ nano config/kibana.yml
 ````
 server.host: "0.0.0.0"
 elasticsearch.url: http://192.168.1.[7|8|9]:9200"
+````
+Save the ile
+
+###### Start Kibana
+````console
+$HOME/bin/kibana &
 ````
 
 ### MQTT Server Setup
@@ -329,6 +344,15 @@ echo "ip_conntrack" | sudo tee -a /etc/modules
 ````
 *      soft   nofile      1048576
 *      hard   nofile      1048576
+````
+
+###### Load the changes and start MQTT
+
+````console
+sudo modprobe ip_conntrack
+sudo sysctl -p
+$HOME/bin/emqttd start
+$HOME/bin/emqttd_ctl plugins load emq_auth_http
 ````
 
 ### Nginx Server Setup
