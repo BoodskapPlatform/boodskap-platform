@@ -31,12 +31,20 @@ On **all** machines, create the below users
 * sudo apt-get install unzip
 * sudo apt-get install python
 
-Install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracle 1.8 JDK's can be found here 
+Install JDK 1.8 (**Not JRE**) We prefer Oracle JDK. At the time of writing Oracle 8 JDK's can be found here 
 
 [Oracle JDKs](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 You can use wget and download from a console too
-* wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz"
-* sudo tar -xzf jdk-8u171-linux-x64.tar.gz -C /opt  
+````
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz"
+sudo tar -xzf jdk-8u171-linux-x64.tar.gz -C /opt  
+````
+###### On Ubutu machines (tested on 18.04)
+````
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+````
 
 Edit /etc/profile
 
