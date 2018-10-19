@@ -301,9 +301,9 @@ net.core.rmem_max=16777216
 net.core.wmem_max=16777216
 net.core.optmem_max=16777216
 
-# net.ipv4.tcp_mem='16777216 16777216 16777216'
-net.ipv4.tcp_rmem='1024 4096 16777216'
-net.ipv4.tcp_wmem='1024 4096 16777216'
+net.ipv4.tcp_mem=16777216 16777216 16777216
+#net.ipv4.tcp_rmem='1024 4096 16777216'
+#net.ipv4.tcp_wmem='1024 4096 16777216'
 net.nf_conntrack_max=1000000
 net.netfilter.nf_conntrack_max=1000000
 net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
