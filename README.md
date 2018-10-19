@@ -58,8 +58,10 @@ sudo nano /etc/profile
 
 Add the below statements and save
 
-* JAVA\_HOME=/opt/jdk1.8.0_171
-* BOODSKAP\_HOME=/home/boodskap
+````
+JAVA\_HOME=/opt/jdk1.8.0_171
+BOODSKAP\_HOME=/home/boodskap
+````
 
 On **nodes 1-3** machines, create the below users
 
@@ -94,7 +96,9 @@ sudo nano /etc/exports
 
 Insert the below at the end of file and save
 
-* **/home/boodskap/data/share       192.168.1.0/24(rw,sync,no_root_squash,no_subtree_check)**
+````
+/home/boodskap/data/share       192.168.1.0/24(rw,sync,no_root_squash,no_subtree_check)
+````
 
 Restart NFS server
 
@@ -116,7 +120,9 @@ sudo nano /etc/fstab
 
 All the below content and save
 
-* 192.168.1.5:/home/boodskap/data/share /home/boodskap/data/share nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+````
+192.168.1.5:/home/boodskap/data/share /home/boodskap/data/share nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+````
 
 Mount the drive
 
@@ -140,19 +146,17 @@ rm -rf apache-cassandra-3.11.0
 
 Edit configuration and change the below parameters
 
-* nano $HOME/conf/cassandra.yaml 
-* cluster_name: 'BSKP DB CLUSTER'
-* - seeds: "192.168.1.7,192.168.1.8,192.168.1.9"
-* listen_address: 192.168.1.[7|8|9]
-    * *each node should have it's own IP address*
-* rpc_address: 192.168.1.[7|8|9]
-    * *each node should have it's own IP address*
-* endpoint_snitch: GossipingPropertyFileSnitch
-* auto_bootstrap: false
-    * *add the above property if missing*
-    
-Save the file
+````
+nano $HOME/conf/cassandra.yaml 
+cluster_name: 'BSKP DB CLUSTER'
+- seeds: "192.168.1.7,192.168.1.8,192.168.1.9"
+listen_address: 192.168.1.[7|8|9]
+rpc_address: 192.168.1.[7|8|9]
+endpoint_snitch: GossipingPropertyFileSnitch
+auto_bootstrap: false
+````
 
+Save the file
 
 ### ElasticSearch Server Setup
 
@@ -170,20 +174,21 @@ rm -rf elasticsearch-5.5.0
 
 Edit configuration and change the below parameters
 
-* cluster.name: bskp-es-cluster
-* node.name: node-[1 | 2 | 3]
-    * **replace with appropriate number for each machine**
-* network.host: 192.168.1.[7 | 8 | 9]
-    * **replace with your network IP address**
-* discovery.zen.ping.unicast.hosts: ["192.168.1.7", "192.168.1.8", "192.168.9"]
-    * **remove th node's own IP address**
-    
+````
+cluster.name: bskp-es-cluster
+node.name: node-[1 | 2 | 3]
+network.host: 192.168.1.[7 | 8 | 9]
+discovery.zen.ping.unicast.hosts: ["192.168.1.7", "192.168.1.8", "192.168.9"]
+````
+
 Edit sysctl properties and change the below parameters
 
 ````console
 sudo nano /etc/sysctl.conf
 ````
-* vm.max_map_count=262144
+````
+vm.max_map_count=262144
+````
 
 ** To further tune the ElasticSearch, please refer to **
 [ElasticSearch Tuning](https://documentation.wazuh.com/3.x/installation-guide/optional-configurations/elastic-tuning.html)
@@ -211,10 +216,10 @@ Edit the config file and change
 nano config/kibana.yaml
 ````
 
-* server.host: "0.0.0.0"
-* elasticsearch.url: http://192.168.1.[7|8|9]:9200"
-    * *each node should have it's own IP address*
-
+````
+server.host: "0.0.0.0"
+elasticsearch.url: http://192.168.1.[7|8|9]:9200"
+````
 
 ### MQTT Server Setup
 
@@ -233,48 +238,52 @@ Edit config file and change the below parameters
 ````console
 nano etc/emq.conf
 ````
-* cluster.name = bskp-emqcl
-* cluster.discovery = static
-* cluster.static.seeds = emq@192.168.1.7,emq@192.168.1.8,emq@192.168.1.9
-    * *each node should NOT have it's own IP address*
-* node.name = emq@192.168.1.[7 | 8 | 9]
-    * *each node should have it's own IP address*
-* node.process_limit = 2097152
-* node.max_ports = 1048576
-* log.console = file
-* log.console.level = info
-* log.console.file = log/emqtt.log
-* mqtt.allow_anonymous = false
-* mqtt.acl_nomatch = deny
-* listener.tcp.external = 0.0.0.0:1883
-* listener.tcp.external.acceptors = 64
-* listener.tcp.external.max_clients = 1000000
-* listener.tcp.external.access.1 = allow 192.168.1.0/24
-* listener.tcp.internal = 127.0.0.1:11883
-* listener.tcp.internal.acceptors = 32
-* listener.ws.external = 8080
-* listener.ws.external.acceptors = 64
-* listener.ws.external.max_clients = 1000000
-* listener.ws.external.access.1 = allow 192.168.1.0/24
-* listener.api.mgmt = 127.0.0.1:9090
-* listener.api.mgmt.access.1 = allow 192.168.1.0/24
+
+````
+cluster.name = bskp-emqcl
+cluster.discovery = static
+cluster.static.seeds = emq@192.168.1.7,emq@192.168.1.8,emq@192.168.1.9
+node.name = emq@192.168.1.[7 | 8 | 9]
+node.process_limit = 2097152
+node.max_ports = 1048576
+log.console = file
+log.console.level = info
+log.console.file = log/emqtt.log
+mqtt.allow_anonymous = false
+mqtt.acl_nomatch = deny
+listener.tcp.external = 0.0.0.0:1883
+listener.tcp.external.acceptors = 64
+listener.tcp.external.max_clients = 1000000
+listener.tcp.external.access.1 = allow 192.168.1.0/24
+listener.tcp.internal = 127.0.0.1:11883
+listener.tcp.internal.acceptors = 32
+listener.ws.external = 8080
+listener.ws.external.acceptors = 64
+listener.ws.external.max_clients = 1000000
+listener.ws.external.access.1 = allow 192.168.1.0/24
+listener.api.mgmt = 127.0.0.1:9090
+listener.api.mgmt.access.1 = allow 192.168.1.0/24
+````
 
 Edit the pluggable auth configuration and change the below parameters
 
 ````console
 nano $HOME/etc/plugins/emq_auth_http.conf
 ````
-* auth.http.auth_req = http://**api.boodskap.in**/emqtt/auth
-* auth.http.auth_req.method = **get**
-* auth.http.auth_req.params = clientid=%c,username=%u,password=%P
 
-* auth.http.super_req = http://**api.boodskap.in**/emqtt/superuser
-* auth.http.super_req.method = **get**
-* auth.http.super_req.params = clientid=%c,username=%u
+````
+auth.http.auth_req = http://api.boodskap.io/emqtt/auth
+auth.http.auth_req.method = get
+auth.http.auth_req.params = clientid=%c,username=%u,password=%P,ipaddr=a%
 
-* auth.http.acl_req = http://**api.boodskap.in**/emqtt/acl
-* auth.http.acl_req.method = **get**
-* auth.http.acl_req.params = access=%A,username=%u,clientid=%c,ipaddr=%a,topic=%t
+auth.http.super_req = http://api.boodskap.io/emqtt/superuser
+auth.http.super_req.method = get
+auth.http.super_req.params = clientid=%c,username=%u,ipaddr=%a
+
+auth.http.acl_req = http://**api.boodskap.in**/emqtt/acl
+auth.http.acl_req.method = **get**
+auth.http.acl_req.params = access=%A,username=%u,clientid=%c,ipaddr=%a,topic=%t
+````
 
 ** To run a very high scalable MQTT, please refer to **
 [EMQTT Tuning](http://emqtt.io/docs/v2/tune.html)
