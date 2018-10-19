@@ -54,7 +54,7 @@ sudo nano /etc/profile
 Add the below statements and save
 
 ````
-BOODSKAP\_HOME=/home/boodskap
+BOODSKAP_HOME=/home/boodskap
 ````
 
 On **nodes 1-3** machines, create the below users
