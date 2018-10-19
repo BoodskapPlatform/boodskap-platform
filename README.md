@@ -168,6 +168,10 @@ rm -rf elasticsearch-5.5.0
 
 Edit configuration and change the below parameters
 
+````console
+nanoe $HOME/config/elastic.yml
+````
+
 ````
 cluster.name: bskp-es-cluster
 node.name: node-[1 | 2 | 3]
@@ -207,7 +211,7 @@ rm -rf kibana-5.5.0-linux-x86_64
 Edit the config file and change
 
 ````console
-nano config/kibana.yaml
+nano config/kibana.yml
 ````
 
 ````
