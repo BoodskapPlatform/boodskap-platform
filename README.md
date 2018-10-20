@@ -184,15 +184,6 @@ network.host: 192.168.1.[7 | 8 | 9]
 discovery.zen.ping.unicast.hosts: ["192.168.1.7", "192.168.1.8", "192.168.9"]
 ````
 
-Edit sysctl properties and change the below parameters
-
-````console
-sudo nano /etc/sysctl.conf
-````
-````
-vm.max_map_count=262144
-````
-
 ** To further tune the ElasticSearch, please refer to **
 [ElasticSearch Tuning](https://documentation.wazuh.com/3.x/installation-guide/optional-configurations/elastic-tuning.html)
     
@@ -332,6 +323,8 @@ net.ipv4.tcp_max_tw_buckets=1048576
 # net.ipv4.tcp_tw_recycle = 1
 # net.ipv4.tcp_tw_reuse = 1
 net.ipv4.tcp_fin_timeout = 15
+
+vm.max_map_count = 262144
 ````
 
 ###### load module ip_conntrack
