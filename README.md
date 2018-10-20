@@ -70,9 +70,7 @@ On **gateway** machine, create the below user and perform the tasks
 
 ````console
 sudo su - boodskap
-mkdir -p $HOME/data/share/platform/bin
-mkdir -p $HOME/data/share/platform/conf
-mkdir -p $HOME/data/share/platform/lib
+mkdir -p $HOME/data/share/platform
 ````
 
 ### NFS Server/Client Setup
