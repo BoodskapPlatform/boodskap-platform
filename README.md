@@ -29,7 +29,7 @@ On **all** machines, create the below users
 sudo apt-get update
 sudo apt-get upgrade
 sudo adduser --disabled-password --gecos ""  boodskap
-sudo apt-get -y install unzip python build-essential libgtk2.0-dev 
+sudo apt-get -y install unzip python build-essential libgtk2.0-dev imagemagick
 ````
 
 Install JDK 8 On **all** machines
