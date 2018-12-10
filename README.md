@@ -23,13 +23,14 @@ You need to have 3 public DNS records pointing to the **gateway** machine's publ
 * gw.boodskap.io
 * api.boodskap.io
 
-On **all** machines, create the below users
+On **all** machines, perform the below
 
 ````console
 sudo apt-get update
 sudo apt-get upgrade
-sudo adduser --disabled-password --gecos ""  boodskap
 sudo apt-get -y install unzip python build-essential libgtk2.0-dev imagemagick
+sudo npm -g install pm2
+sudo adduser --disabled-password --gecos ""  boodskap
 ````
 
 Install JDK 8 On **all** machines
@@ -42,7 +43,6 @@ We prefer Oracle JDK (**not JRE**). At the time of writing Oracle 8 JDK's can be
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get -y install oracle-java8-installer
-sudo npm -g install pm2
 ````
 
 Edit /etc/profile
