@@ -42,6 +42,7 @@ We prefer Oracle JDK (**not JRE**). At the time of writing Oracle 8 JDK's can be
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get -y install oracle-java8-installer
+sudo npm -g install pm2
 ````
 
 Edit /etc/profile
