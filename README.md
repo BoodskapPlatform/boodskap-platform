@@ -27,8 +27,8 @@ On **all** machines, perform the below
 
 ````console
 sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install --fix-missing -y nfs-kernel-server python unzip nginx software-properties-common wget sudo nano net-tools telnet netcat git curl psmisc build-essential libgtk2.0-dev imagemagick
+sudo apt-get upgrade -y
+sudo apt-get install -y --fix-missing nfs-kernel-server python unzip nginx software-properties-common wget sudo nano net-tools telnet netcat git curl psmisc build-essential libgtk2.0-dev imagemagick
 sudo adduser --disabled-password --gecos ""  boodskap
 sudo adduser --disabled-password --gecos ""  elastic
 sudo adduser --disabled-password --gecos ""  cassandra
