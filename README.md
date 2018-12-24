@@ -28,9 +28,12 @@ On **all** machines, perform the below
 ````console
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get -y install unzip python build-essential libgtk2.0-dev imagemagick
-sudo npm -g install pm2
+sudo apt-get install --fix-missing -y nfs-kernel-server python unzip nginx software-properties-common wget sudo nano net-tools telnet netcat git curl psmisc build-essential libgtk2.0-dev imagemagick
 sudo adduser --disabled-password --gecos ""  boodskap
+sudo adduser --disabled-password --gecos ""  elastic
+sudo adduser --disabled-password --gecos ""  cassandra
+sudo adduser --disabled-password --gecos ""  kibana 
+sudo adduser --disabled-password --gecos ""  emqtt
 ````
 
 Install JDK 8 On **all** machines
@@ -65,18 +68,13 @@ Add the below statements and save
 BOODSKAP_HOME=/home/boodskap
 ````
 
-On **nodes 1-3** machines, create the below users
+On **gateway** machine, perform the tasks
 
 ````console
-sudo adduser --disabled-password --gecos ""  elastic
-sudo adduser --disabled-password --gecos ""  cassandra
-sudo adduser --disabled-password --gecos ""  kibana 
-sudo adduser --disabled-password --gecos ""  emqtt
-````
-
-On **gateway** machine, create the below user and perform the tasks
-
-````console
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo apt-get install -y nodejs
+sudo npm update npm -g
+sudo npm install pm2 -g
 sudo su - boodskap
 mkdir -p $HOME/data/share/platform
 ````
