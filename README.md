@@ -44,6 +44,14 @@ sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get -y install oracle-java8-installer
 ````
+[Open JDK](https://openjdk.java.net)
+
+###### On Ubuntu machines (tested on 18.04)
+````console
+sudo add-apt-repository -y ppa:openjdk-r/ppa
+sudo apt-get update -y
+sudo apt-get install -y openjdk-8-jdk
+````
 
 Edit /etc/profile
 
