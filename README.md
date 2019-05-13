@@ -352,6 +352,17 @@ $HOME/bin/emqttd start
 $HOME/bin/emqttd_ctl plugins load emq_auth_http
 ````
 
+### Boodskap IoT Platform Setup
+````console
+sudo su - boodskap
+wget --no-check-certificate  https://archive.apache.org/dist/ignite/2.6.0/apache-ignite-fabric-2.6.0-bin.zip
+unzip apache-ignite-fabric-2.6.0-bin.zip
+mv apache-ignite-fabric-2.6.0-bin/* .
+rm -rf apache-ignite-fabric-2.6.0-bin
+wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/2.1.0/boodskap-all-libs-2.1.0.tar.gz
+tar -xzvf boodskap-all-libs-2.1.0.tar.gz
+````
+
 ### Nginx Server Setup
 
 In the **gateway** machine, perform the below operations.
@@ -620,4 +631,4 @@ listen mqtt
   server node3 192.168.1.9:1883 check
 ````
 
-### Boodskap IoT Platform Setup
+
