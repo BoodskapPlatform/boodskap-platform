@@ -235,8 +235,8 @@ Download and configure
 
 ````console
 sudo su - emqtt
-wget --no-check-certificate  https://www.emqx.io/static/brokers/emqttd-ubuntu16.04-v2.3.9.zip
-unzip emqttd-ubuntu16.04-v2.3.9.zip
+wget --no-check-certificate  https://www.emqx.io/downloads/broker/v2.3.9/emqttd-ubuntu18.04-v2.3.9.zip
+unzip emqttd-ubuntu18.04-v2.3.9.zip
 mv emqttd/* .
 rm -rf emqttd
 ````
