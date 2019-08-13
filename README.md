@@ -178,7 +178,7 @@ rm -rf elasticsearch-5.5.0
 Edit configuration and change the below parameters
 
 ````console
-nanoe $HOME/config/elastic.yml
+nano $HOME/config/elasticsearch.yml
 ````
 
 ````
