@@ -1,6 +1,6 @@
 <project name="builder" default="make">
 
-	<property name="boodskap.version">2.0.2</property>
+	<property name="boodskap.version">2.1.1</property>
 
 	<target name="make" depends="clean, copy, clean-windows, clean-macosx, clean-linux, build" />
 

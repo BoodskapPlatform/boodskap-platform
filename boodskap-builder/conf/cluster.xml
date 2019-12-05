@@ -162,6 +162,12 @@
 					<property name="backups" value="2" />
 					<property name="cacheMode" value="PARTITIONED" />
 				</bean>
+				<bean
+					class="org.apache.ignite.configuration.CacheConfiguration">
+					<property name="name" value="PROCESSED_MESSAGES" />
+					<property name="backups" value="2" />
+					<property name="cacheMode" value="PARTITIONED" />
+				</bean>
 			</list>
 		</property>
 	</bean>
