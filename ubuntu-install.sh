@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Automatic install script for ubuntu 18.04
+#
 
 sudo apt-get update
 sudo apt-get upgrade -y
