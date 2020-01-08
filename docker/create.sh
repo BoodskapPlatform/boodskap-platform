@@ -23,6 +23,13 @@ VOL_BOODSKAP=$VOL_DIR/boodskap
 
 mkdir -p $VOL_DIR
 
+git pull boodskapiot/cassandra:3.11.5
+git pull boodskapiot/elastic:7.5.1
+git pull boodskapiot/emqx:3.2.7
+git pull boodskapiot/kibana:7.5.1
+git pull boodskapiot/platform:3.0.0
+git pull boodskapiot/gateway:2.0.5
+
 docker network create --subnet=10.1.1.0/24 platformnet
 docker container create --privileged --net platformnet -p 9042:9042 --ip 10.1.1.3 --hostname cassandra --name cassandra -v $VOL_CASSANDRA:/root/data boodskapiot/cassandra:3.11.5
 docker container create --privileged --net platformnet -p 9200:9200 --ip 10.1.1.4 --hostname elastic --name elastic -v $VOL_ELASTIC:/home/elastic/data boodskapiot/elastic:7.5.1
