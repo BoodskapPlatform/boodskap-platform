@@ -11,8 +11,7 @@
 + Start the containers
     + $ ./startup.sh
 + Activate the platform (one time)
-    + $ ./login.sh boodskap
-    + $ /root/bin/control.sh --activate
+    + $ docker exec -it boodskap /root/bin/control.sh --activate
 + In about 5-6 minutes (depends on your machine) the platform should be accessed at the below url in your browser
     + http://boodskap.xyz
     + **Until the platform initializes, you will be getting invalid password if you try to login**
