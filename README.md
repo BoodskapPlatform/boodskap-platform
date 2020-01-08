@@ -10,8 +10,12 @@
     + $ ./create.sh
 + Start the containers
     + $ ./startup.sh
++ Activate the platform (one time)
+    + $ ./login.sh boodskap
+    + $ /root/bin/cluster.sh --activate
 + In about 5-6 minutes (depends on your machine) the platform should be accessed at the below url in your browser
     + http://boodskap.xyz
+    + **Until the platform initializes, you will be getting invalid password if you try to login**
 + The default user name and password are **admin / admin**
 
 ## Download and Install (Single Machine)
