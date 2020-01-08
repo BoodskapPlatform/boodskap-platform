@@ -7,7 +7,7 @@
 docker start gateway
 docker start cassandra
 docker start elastic
-docker start emqtt
+docker start emqx
 docker start kibana
 docker start boodskap
 
