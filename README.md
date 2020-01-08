@@ -5,7 +5,7 @@
 + Install the recent docker software in your host machine
 + Clone this repository
     + $ git clone https://github.com/BoodskapPlatform/boodskap-platform.git
-+ $ cd boodskap-platform
++ $ cd boodskap-platform/docker
 + Create the containers
     + $ ./create.sh
 + Start the containers
