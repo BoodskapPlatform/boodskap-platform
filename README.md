@@ -1,14 +1,3 @@
-# Boodskap IoT Platform
-
-## A Github repository to store all releases and patches
+![Boodskap Logo](https://scontent.fmaa2-2.fna.fbcdn.net/v/t31.0-8/24837215_1491639110951688_1320692237507881677_o.jpg?_nc_cat=110&_nc_sid=dd9801&_nc_ohc=aACOB0_nddEAX8seTDT&_nc_ht=scontent.fmaa2-2.fna&oh=cad6af5766a13baeeac313f7e9532236&oe=5EDE9A46)
 
 ## Visit our [developer webite](https://developer.boodskap.io) for installation and user guides
-
-# Change Log
-- Patch 10006
-    - Fixed MQTT Outgoing commands are subscribed by incoming listeners
-- Patch 10005
-    - Fixed MQTT Binary messages not processed
-    - Fixed MQTT JSON message IDs are always set as 0
-- Patch 10004
-    - Changed the default MQTT service to accept any QOS messages
