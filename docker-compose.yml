@@ -1,0 +1,90 @@
+version: '3.3'
+
+services:
+
+    emqx01:
+        image: boodskapiot/emqx:3.2.8
+        hostname: emqx01.io
+        ports:
+            - "1883:1883"
+            - "8083:8083"
+        networks:
+            - platformnet
+        environment:
+            EMQX_HOST: "emqx01.io"
+            EMQX_NAME: "emqx01"
+        volumes:
+            - ./emqx01:/efs/emqx
+
+    elastic01:
+        image: "docker.elastic.co/elasticsearch/elasticsearch:8.4.1"
+        hostname: elastic01
+        networks:
+            - platformnet
+        ports:
+            - "9200:9200"
+        environment:
+            - node.name=node1
+            - cluster.name=bskp-cluster
+            - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+            - discovery.seed_hosts=elastic01
+            - cluster.initial_master_nodes=node1
+            - xpack.security.enabled=false
+            - bootstrap.memory_lock=false
+        volumes:
+            - ./elastic01:/usr/share/elasticsearch/data
+
+    cassandra01:
+        image: "cassandra:4.1"
+        hostname: cassandra01
+        networks:
+            - platformnet
+        ports:
+            - "9042:9042"
+            - "7000:7000"
+        environment:
+            CASSANDRA_BROADCAST_ADDRESS: "cassandra01"
+            CASSANDRA_SEEDS: "cassandra01"
+            CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+        volumes:
+            - ./cassandra01:/var/lib/cassandra
+
+    platform01:
+        image: "boodskapiot/platform:4.6.4-00"
+        hostname: platform01
+        networks:
+            - platformnet
+        ports:
+            - "18080:18080"
+            - "19090:19090"
+        environment:
+            - "JVM_OPTS=-Xms512m -Xmx512m -server -Dtinylog.configuration=${BOODSKAP_HOME}/config/tinylog.properties"
+            
+        depends_on:
+            - cassandra01
+            - elastic01
+            - emqx01
+        volumes:
+            - ./platform01:/opt/boodskap/config
+
+    platformui:
+        image: boodskapiot/ui:3.5.1
+        hostname: platformui
+        ports:
+            - "4201:4201"
+        networks:
+            - platformnet
+
+    nginx:
+        image: "nginx:stable-perl"
+        hostname: nginx
+        networks:
+            - platformnet
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+
+networks:
+  platformnet:
